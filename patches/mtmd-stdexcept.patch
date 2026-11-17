@@ -1,0 +1,12 @@
+diff --git a/tools/mtmd/mtmd-helper-gen.cpp b/tools/mtmd/mtmd-helper-gen.cpp
+index 30becf9df..e747f1354 100644
+--- a/tools/mtmd/mtmd-helper-gen.cpp
++++ b/tools/mtmd/mtmd-helper-gen.cpp
+@@ -11,6 +11,7 @@
+ #include <functional>
+ #include <memory>
+ #include <random>
++#include <stdexcept>
+ #include <string>
+ #include <unordered_map>
+ #include <vector>

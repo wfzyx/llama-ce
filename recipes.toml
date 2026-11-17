@@ -1,0 +1,35 @@
+[upstream]
+repo = "https://github.com/ggml-org/llama.cpp.git"
+base_commit = "origin/master"
+
+[profiles.llama-ce]
+description = "llama.cpp + tandem.cpp + sparse-decode + open READY CI-passing PRs from trusted tiers"
+patches = ["tandemcpp", "sparse-decode", "mtmd-stdexcept"]
+auto_prs = true
+author_associations = ["MEMBER", "OWNER", "COLLABORATOR", "CONTRIBUTOR"]
+max_prs = 0
+on_conflict = "skip"
+
+[profiles.base]
+description = "Clean upstream llama.cpp"
+patches = []
+
+# Patch sources:
+#   type = "url"       -> raw .patch / .diff URL
+#   type = "github_pr" -> ggml-org/llama.cpp PR number (auto-fetches .patch)
+#   type = "local"     -> local file under patches/
+# Optional `override = "patches/<file>.patch"` uses a locally resolved patch instead of upstream URL.
+
+[patches.tandemcpp]
+type = "url"
+url = "https://raw.githubusercontent.com/ewhacc/tandem.cpp/main/tandem.patch"
+override = "patches/tandemcpp.patch"
+
+[patches.sparse-decode]
+type = "url"
+url = "https://github.com/ggml-org/llama.cpp/compare/master...topppg:sparse-decode.diff"
+override = "patches/sparse-decode.patch"
+
+[patches.mtmd-stdexcept]
+type = "local"
+path = "patches/mtmd-stdexcept.patch"
